@@ -1,0 +1,39 @@
+name: Run Jest Tests
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull request to the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Specify the environment to run the job
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js (adjust the version as necessary)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify the version of Node.js you want to use
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install  # Or `yarn install` if you use Yarn
+
+      # Step 4: Run Jest tests
+      - name: Run Jest tests
+        run: npm test  # Assuming you have a script called "test" in package.json that runs Jest
+
+      # Optional: Upload test results
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: jest-test-results
+          path: ./test-results  # If you want to store the test results for further analysis
