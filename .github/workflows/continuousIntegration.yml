@@ -18,7 +18,6 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        working-directory: ./constitutional-compass
         run: npm ci
       
       - name: Run Jest tests
