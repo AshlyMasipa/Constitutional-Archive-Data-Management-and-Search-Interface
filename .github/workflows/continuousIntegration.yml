@@ -4,8 +4,10 @@ on:
   push:
     branches: [dev-1]  # Trigger only on pushes to dev
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,10 +21,14 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: cd constitutional-compass and npm ci
+        run: |
+          cd constitutional-compass
+          npm ci
       
       - name: Run Jest tests
-        run: cd constitutional-compass and npm test
+        run: |
+          cd constitutional-compass
+          npm test
   
   merge-to-main:
     needs: test  # Runs only if tests pass
