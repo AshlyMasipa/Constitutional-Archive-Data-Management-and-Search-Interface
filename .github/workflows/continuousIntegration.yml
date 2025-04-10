@@ -18,10 +18,10 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
+        run: cd constitutional-compass and npm ci
       
       - name: Run Jest tests
-        run: npm test
+        run: cd constitutional-compass and npm test
   
   merge-to-main:
     needs: test  # Runs only if tests pass
